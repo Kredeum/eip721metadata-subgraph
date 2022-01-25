@@ -1,0 +1,30 @@
+# prettier-ignore
+specVersion: 0.0.2
+description: EIP-721, NFTs with IPFS metadata
+repository: https://github.com/Kredeum/kredeum
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: EIP721
+    network: rinkeby
+    source:
+      abi: EIP721
+      startBlock: 10000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - TokenContract
+        - Owner
+        - OwnerPerTokenContract
+        - All
+      abis:
+        - name: EIP721
+          file: ./abis/All.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
