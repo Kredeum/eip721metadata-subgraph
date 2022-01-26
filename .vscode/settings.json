@@ -1,0 +1,24 @@
+{
+  "favorites.resources": [
+    {
+      "filePath": "thegraph/subgraph.yaml",
+      "group": "Default"
+    },
+    {
+      "filePath": "thegraph/schema.graphql",
+      "group": "Default"
+    },
+    {
+      "filePath": "thegraph/package.json",
+      "group": "Default"
+    },
+    {
+      "filePath": "thegraph/tsconfig.json",
+      "group": "Default"
+    },
+    {
+      "filePath": "thegraph/src/mapping.ts",
+      "group": "Default"
+    }
+  ]
+}

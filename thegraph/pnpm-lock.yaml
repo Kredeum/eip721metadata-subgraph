@@ -1,12 +1,14 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@graphprotocol/graph-cli': ^0.26.0
-  '@graphprotocol/graph-ts': ^0.24.1
+  '@graphprotocol/graph-cli': 0.21.1
+  '@graphprotocol/graph-ts': 0.20.1
+  assemblyscript: ^0.19.22
 
 devDependencies:
-  '@graphprotocol/graph-cli': 0.26.0
-  '@graphprotocol/graph-ts': 0.24.1
+  '@graphprotocol/graph-cli': 0.21.1
+  '@graphprotocol/graph-ts': 0.20.1
+  assemblyscript: 0.19.22
 
 packages:
 
@@ -31,12 +33,11 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@graphprotocol/graph-cli/0.26.0:
-    resolution: {integrity: sha512-sQKKfkGy6jsfpZD6KA9KdvHRpeStd1ZH334CMVxhyJtPY006a/Wc2rr7TBqgAtwpggs7UiT0UA3s5vG0jFQB5g==}
+  /@graphprotocol/graph-cli/0.21.1:
+    resolution: {integrity: sha512-bqHlHZTzfEJICUpGQQr4Pru07OiGiOpIiwkVSdQMJaiuwu+bflMmLJNYNbSRH2byqaWDZvc4MI3U9CwUYXdRRw==}
     hasBin: true
     dependencies:
-      assemblyscript: 0.19.10
-      binary-install-raw: 0.0.13_debug@4.3.3
+      assemblyscript: github.com/AssemblyScript/assemblyscript/3ed76a97f05335504166fce1653da75f4face28f
       chalk: 3.0.0
       chokidar: 3.5.3
       debug: 4.3.3
@@ -44,7 +45,7 @@ packages:
       dockerode: 2.5.8
       fs-extra: 9.1.0
       glob: 7.2.0
-      gluegun: github.com/edgeandnode/gluegun/b34b9003d7bf556836da41b57ef36eb21570620a_debug@4.3.3
+      gluegun: 4.3.1_debug@4.3.3
       graphql: 15.8.0
       immutable: 3.8.2
       ipfs-http-client: 34.0.0
@@ -54,9 +55,7 @@ packages:
       pkginfo: 0.4.1
       prettier: 1.19.1
       request: 2.88.2
-      semver: 7.3.5
       tmp-promise: 3.0.3
-      which: 2.0.2
       yaml: 1.10.2
     transitivePeerDependencies:
       - bufferutil
@@ -65,10 +64,14 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphprotocol/graph-ts/0.24.1:
-    resolution: {integrity: sha512-2vU4m5ZPQIqMlMce/z5vmOtGHRlRmcRhMfemS3NIwxCSxSBGVnX2zb7QBTzzdQKGwsAZdbz6V0okkOtvohELfQ==}
+  /@graphprotocol/graph-ts/0.20.1:
+    resolution: {integrity: sha512-JATb0tERXt+JZUYuW9rwfnLzIM4EOBHf/EEZir5JMiIVMP55CoOyQGAwH2dvKSm5O8WQ1BfdbnOvk7YNVMFHsg==}
     dependencies:
-      assemblyscript: 0.19.10
+      assemblyscript: github.com/AssemblyScript/assemblyscript/3ed76a97f05335504166fce1653da75f4face28f
+    dev: true
+
+  /@protobufjs/utf8/1.1.0:
+    resolution: {integrity: sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=}
     dev: true
 
   /@types/connect/3.4.35:
@@ -218,12 +221,13 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
-  /assemblyscript/0.19.10:
-    resolution: {integrity: sha512-HavcUBXB3mBTRGJcpvaQjmnmaqKHBGREjSPNsIvnAk2f9dj78y4BkMaSSdvBQYWcDDzsHQjyUC8stICFkD1Odg==}
+  /assemblyscript/0.19.22:
+    resolution: {integrity: sha512-+Rclbx0+BI3qAe9fjc8XGbSUDaayTtjINnD19I4MmfpT2R43c9YTQERP36676shkPxb1fisDFZeSTL65Da8Q2g==}
     hasBin: true
     dependencies:
-      binaryen: 101.0.0-nightly.20210723
-      long: 4.0.0
+      binaryen: 102.0.0-nightly.20211028
+      long: 5.2.0
+      source-map-support: 0.5.21
     dev: true
 
   /assert-plus/1.0.0:
@@ -291,19 +295,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /binary-install-raw/0.0.13_debug@4.3.3:
-    resolution: {integrity: sha512-v7ms6N/H7iciuk6QInon3/n2mu7oRX+6knJ9xFPsJ3rQePgAqcR3CRTwUheFd8SLbiq4LL7Z4G/44L9zscdt9A==}
-    engines: {node: '>=10'}
-    dependencies:
-      axios: 0.21.4_debug@4.3.3
-      rimraf: 3.0.2
-      tar: 6.1.11
-    transitivePeerDependencies:
-      - debug
+  /binaryen/102.0.0-nightly.20211028:
+    resolution: {integrity: sha512-GCJBVB5exbxzzvyt8MGDv/MeUjs6gkXDvf4xOIItRBptYl0Tz5sm1o/uG95YK0L0VeG5ajDu3hRtkBP2kzqC5w==}
+    hasBin: true
     dev: true
 
-  /binaryen/101.0.0-nightly.20210723:
-    resolution: {integrity: sha512-eioJNqhHlkguVSbblHOtLqlhtC882SOEPKmNFZaDuz1hzQjolxZ+eu3/kaS10n3sGPONsIZsO7R9fR00UyhEUA==}
+  /binaryen/77.0.0-nightly.20190407:
+    resolution: {integrity: sha512-1mxYNvQ0xywMe582K7V6Vo2zzhZZxMTeGHH8aE/+/AND8f64D8Q1GThVY3RVRwGY/4p+p95ccw9Xbw2ovFXRIg==}
     hasBin: true
     dev: true
 
@@ -492,11 +490,6 @@ packages:
 
   /chownr/1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
-    dev: true
-
-  /chownr/2.0.0:
-    resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
-    engines: {node: '>=10'}
     dev: true
 
   /cids/0.7.5:
@@ -939,13 +932,6 @@ packages:
       rimraf: 2.7.1
     dev: true
 
-  /fs-minipass/2.1.0:
-    resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
-    engines: {node: '>= 8'}
-    dependencies:
-      minipass: 3.1.6
-    dev: true
-
   /fs.realpath/1.0.0:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=}
     dev: true
@@ -999,6 +985,45 @@ packages:
       minimatch: 3.0.4
       once: 1.4.0
       path-is-absolute: 1.0.1
+    dev: true
+
+  /gluegun/4.3.1_debug@4.3.3:
+    resolution: {integrity: sha512-TyOf60807SUYvd0v7fiRbhWrBSl9974clwZwCVc3qxYB83TQQQUSggwcz3yUeOl1MBALpwrz0Q0GUmi25quVOg==}
+    hasBin: true
+    dependencies:
+      apisauce: 1.1.5_debug@4.3.3
+      app-module-path: 2.2.0
+      cli-table3: 0.5.1
+      colors: 1.3.3
+      cosmiconfig: 6.0.0
+      cross-spawn: 7.0.3
+      ejs: 2.7.4
+      enquirer: 2.3.4
+      execa: 3.4.0
+      fs-jetpack: 2.4.0
+      lodash.camelcase: 4.3.0
+      lodash.kebabcase: 4.1.1
+      lodash.lowercase: 4.3.0
+      lodash.lowerfirst: 4.3.1
+      lodash.pad: 4.5.1
+      lodash.padend: 4.6.1
+      lodash.padstart: 4.6.1
+      lodash.repeat: 4.1.0
+      lodash.snakecase: 4.1.1
+      lodash.startcase: 4.4.0
+      lodash.trim: 4.5.1
+      lodash.trimend: 4.5.1
+      lodash.trimstart: 4.5.1
+      lodash.uppercase: 4.3.0
+      lodash.upperfirst: 4.3.1
+      ora: 4.1.1
+      pluralize: 8.0.0
+      ramdasauce: 2.1.3
+      semver: 7.3.5
+      which: 2.0.2
+      yargs-parser: 16.1.0
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /graceful-fs/4.2.9:
@@ -1628,6 +1653,10 @@ packages:
     resolution: {integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==}
     dev: true
 
+  /long/5.2.0:
+    resolution: {integrity: sha512-9RTUNjK60eJbx3uz+TEGF7fUr29ZDxR5QzXcyDpeSfeH28S9ycINflOgOlppit5U+4kNTe83KQnMEerw7GmE8w==}
+    dev: true
+
   /looper/3.0.0:
     resolution: {integrity: sha1-LvpUw7HLq6m5Su4uWRSwvlf7t0k=}
     dev: true
@@ -1704,32 +1733,11 @@ packages:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
 
-  /minipass/3.1.6:
-    resolution: {integrity: sha512-rty5kpw9/z8SX9dmxblFA6edItUmwJgMeYDZRrwlIVN27i8gysGbznJwUggw2V/FVqFSDdWy040ZPS811DYAqQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      yallist: 4.0.0
-    dev: true
-
-  /minizlib/2.1.2:
-    resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
-    engines: {node: '>= 8'}
-    dependencies:
-      minipass: 3.1.6
-      yallist: 4.0.0
-    dev: true
-
   /mkdirp/0.5.5:
     resolution: {integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==}
     hasBin: true
     dependencies:
       minimist: 1.2.5
-    dev: true
-
-  /mkdirp/1.0.4:
-    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
-    engines: {node: '>=10'}
-    hasBin: true
     dev: true
 
   /ms/2.1.2:
@@ -1952,6 +1960,11 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mimic-fn: 2.1.0
+    dev: true
+
+  /opencollective-postinstall/2.0.3:
+    resolution: {integrity: sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==}
+    hasBin: true
     dev: true
 
   /optimist/0.3.7:
@@ -2349,6 +2362,18 @@ packages:
       varint: 5.0.2
     dev: true
 
+  /source-map-support/0.5.21:
+    resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
+    dependencies:
+      buffer-from: 1.1.2
+      source-map: 0.6.1
+    dev: true
+
+  /source-map/0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /split-ca/1.0.1:
     resolution: {integrity: sha1-bIOv82kvphJW4M0ZfgXp3hV2kaY=}
     dev: true
@@ -2478,18 +2503,6 @@ packages:
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.0
-    dev: true
-
-  /tar/6.1.11:
-    resolution: {integrity: sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==}
-    engines: {node: '>= 10'}
-    dependencies:
-      chownr: 2.0.0
-      fs-minipass: 2.1.0
-      minipass: 3.1.6
-      minizlib: 2.1.2
-      mkdirp: 1.0.4
-      yallist: 4.0.0
     dev: true
 
   /through/2.3.8:
@@ -2682,46 +2695,20 @@ packages:
       decamelize: 1.2.0
     dev: true
 
-  github.com/edgeandnode/gluegun/b34b9003d7bf556836da41b57ef36eb21570620a_debug@4.3.3:
-    resolution: {tarball: https://codeload.github.com/edgeandnode/gluegun/tar.gz/b34b9003d7bf556836da41b57ef36eb21570620a}
-    id: github.com/edgeandnode/gluegun/b34b9003d7bf556836da41b57ef36eb21570620a
-    name: gluegun
-    version: 4.3.1
+  github.com/AssemblyScript/assemblyscript/3ed76a97f05335504166fce1653da75f4face28f:
+    resolution: {tarball: https://codeload.github.com/AssemblyScript/assemblyscript/tar.gz/3ed76a97f05335504166fce1653da75f4face28f}
+    name: assemblyscript
+    version: 0.6.0
+    engines: {node: '>=8'}
     hasBin: true
+    requiresBuild: true
     dependencies:
-      apisauce: 1.1.5_debug@4.3.3
-      app-module-path: 2.2.0
-      cli-table3: 0.5.1
-      colors: 1.3.3
-      cosmiconfig: 6.0.0
-      cross-spawn: 7.0.3
-      ejs: 2.7.4
-      enquirer: 2.3.4
-      execa: 3.4.0
-      fs-jetpack: 2.4.0
-      lodash.camelcase: 4.3.0
-      lodash.kebabcase: 4.1.1
-      lodash.lowercase: 4.3.0
-      lodash.lowerfirst: 4.3.1
-      lodash.pad: 4.5.1
-      lodash.padend: 4.6.1
-      lodash.padstart: 4.6.1
-      lodash.repeat: 4.1.0
-      lodash.snakecase: 4.1.1
-      lodash.startcase: 4.4.0
-      lodash.trim: 4.5.1
-      lodash.trimend: 4.5.1
-      lodash.trimstart: 4.5.1
-      lodash.uppercase: 4.3.0
-      lodash.upperfirst: 4.3.1
-      ora: 4.1.1
-      pluralize: 8.0.0
-      ramdasauce: 2.1.3
-      semver: 7.3.5
-      which: 2.0.2
-      yargs-parser: 16.1.0
-    transitivePeerDependencies:
-      - debug
+      '@protobufjs/utf8': 1.1.0
+      binaryen: 77.0.0-nightly.20190407
+      glob: 7.2.0
+      long: 4.0.0
+      opencollective-postinstall: 2.0.3
+      source-map-support: 0.5.21
     dev: true
 
   github.com/hugomrdias/concat-stream/057bc7b5d6d8df26c8cf00a3f151b6721a0a8034:

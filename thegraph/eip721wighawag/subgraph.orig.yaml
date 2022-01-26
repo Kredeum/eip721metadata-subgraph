@@ -1,17 +1,15 @@
-# prettier-ignore
 specVersion: 0.0.2
-description: EIP721metadata, NFTs with metadata
-repository: https://github.com/Kredeum/eip721metadata-subgraph
+description: EIP-721
+repository: https://github.com/wighawag/eip721-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: EIP721metadata
-    network: rinkeby
+    name: EIP721
+    network: mainnet
     source:
-      address: '0xa856cEF16D29B7B69098008B277C3933A4d1078f'
       abi: EIP721
-      startBlock: 10050000
+      startBlock: 5806610
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
