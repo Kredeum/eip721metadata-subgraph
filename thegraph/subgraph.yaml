@@ -1,5 +1,5 @@
 # prettier-ignore
-specVersion: 0.0.2
+specVersion: 0.0.4
 description: EIP721metadata, NFTs with metadata
 repository: https://github.com/Kredeum/eip721metadata-subgraph
 schema:
@@ -14,7 +14,7 @@ dataSources:
       startBlock: 10050000
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Token

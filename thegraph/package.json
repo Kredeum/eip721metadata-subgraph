@@ -9,8 +9,8 @@
     "deploy": "source .env && npm run clean && npm run codegen && graph deploy zapaz/eip721-rinkeby --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token $THEGRAPH_KEY"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "0.21.1",
-    "@graphprotocol/graph-ts": "0.20.1",
-    "assemblyscript": "^0.19.22"
+    "@graphprotocol/graph-cli": "0.26.0",
+    "@graphprotocol/graph-ts": "0.24.1",
+    "assemblyscript": "^0.19.23"
   }
 }
