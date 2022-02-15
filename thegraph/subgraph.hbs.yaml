@@ -8,7 +8,7 @@ features:
   - ipfsOnEthereumContracts
 dataSources:
   - kind: ethereum/contract
-    name: EIP721metadata
+    name: EIP721
     network: {{chainName}}
     source:
       abi: EIP721
