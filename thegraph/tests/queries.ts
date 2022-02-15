@@ -1,20 +1,21 @@
-// npx mocha queries.mjs  --experimental-json-modules
-import fetch from "node-fetch";
+#! npx ts-mocha
+
+import { describe, it } from "mocha";
 import { expect } from "chai";
+import fetch from "node-fetch";
 
-const endpoint = "https://api.thegraph.com/subgraphs/name/zapaz/eip721-mumbai";
+const endpoint = "https://api.thegraph.com/subgraphs/name/zapaz/eip721-rinkeby";
 
-async function _graphQL(_url, _query) {
+const _graphQL = async (_url: string, _query: string): Promise<any> => {
   let json = {};
   try {
-    json = await (
-      await fetch(_url, { method: "POST", body: JSON.stringify({ query: _query }) })
-    ).json();
+    const resp = await fetch(_url, { method: "POST", body: JSON.stringify({ query: _query }) });
+    json = await resp.json();
   } catch (e) {
     console.error("_graphQL ERROR", e, _url, json);
   }
-  return json.data;
-}
+  return json;
+};
 
 describe("Subgraph Queries", async function () {
   let nfts, nft;

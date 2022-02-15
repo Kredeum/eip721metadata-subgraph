@@ -1,4 +1,4 @@
 {
   "extends": "assemblyscript/std/assembly.json",
-  "include": ["mapping.ts"]
+  "files": ["mapping.ts"]
 }
