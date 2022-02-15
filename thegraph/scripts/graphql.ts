@@ -15,11 +15,13 @@ async function _graphQL(_url, _query) {
     console.error("_fetchJson ERROR", e, _url, json);
   }
   // console.log(json);
-  return json.data;
+  return json;
 }
 
 const queryFile = process.argv[2] || "tokens-metadata.gql";
-const url = process.argv[3] || "https://api.thegraph.com/subgraphs/name/zapaz/eip721-mumbai";
+const url =
+  process.argv[3] ||
+  "https://api.thegraph.com/subgraphs/name/zapaz/eip721-mumbai";
 const query = fs.readFileSync(queryFile, "utf8");
 
 _graphQL(url, query).then((res) => {

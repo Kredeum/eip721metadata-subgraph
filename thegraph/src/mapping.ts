@@ -1,37 +1,12 @@
-import {
-  Bytes,
-  BigInt,
-  store,
-  json,
-  ipfs,
-  JSONValue,
-  JSONValueKind,
-} from "@graphprotocol/graph-ts";
-import {
-  All,
-  Token,
-  TokenContract,
-  Owner,
-  OwnerPerTokenContract,
-} from "../generated/schema";
+import { ByteArray, Bytes, BigInt, store, json, ipfs, JSONValue, JSONValueKind } from "@graphprotocol/graph-ts";
+import { All, Token, TokenContract, Owner, OwnerPerTokenContract } from "../generated/schema";
 import { Transfer, EIP721 } from "../generated/EIP721metadata/EIP721";
 
 let zeroAddress = "0x0000000000000000000000000000000000000000";
 
-function toBytes(hexString: String): Bytes {
-  let result = new Uint8Array(hexString.length / 2);
-  for (let i = 0; i < hexString.length; i += 2) {
-    result[i / 2] = parseInt(hexString.substr(i, 2), 16) as u32;
-  }
-  return result as Bytes;
-}
-
-function supportsInterface(
-  contract: EIP721,
-  interfaceId: String,
-  expected: boolean = true
-): boolean {
-  let supports = contract.try_supportsInterface(toBytes(interfaceId));
+function supportsInterface(contract: EIP721, interfaceId: string, expected: boolean = true): boolean {
+  const interfaceIdBytes = Bytes.fromByteArray(ByteArray.fromHexString(interfaceId));
+  let supports = contract.try_supportsInterface(interfaceIdBytes);
   return !supports.reverted && supports.value == expected;
 }
 
@@ -74,15 +49,8 @@ export function handleTransfer(event: Transfer): void {
     // log.error('contract : {}',[event.address.toHexString()]);
     let supportsEIP165Identifier = supportsInterface(contract, "01ffc9a7");
     let supportsEIP721Identifier = supportsInterface(contract, "80ac58cd");
-    let supportsNullIdentifierFalse = supportsInterface(
-      contract,
-      "00000000",
-      false
-    );
-    let supportsEIP721 =
-      supportsEIP165Identifier &&
-      supportsEIP721Identifier &&
-      supportsNullIdentifierFalse;
+    let supportsNullIdentifierFalse = supportsInterface(contract, "00000000", false);
+    let supportsEIP721 = supportsEIP165Identifier && supportsEIP721Identifier && supportsNullIdentifierFalse;
 
     let supportsEIP721Metadata = false;
     if (supportsEIP721) {
@@ -108,11 +76,9 @@ export function handleTransfer(event: Transfer): void {
     }
     all.numTokenContracts = all.numTokenContracts.plus(BigInt.fromI32(1));
 
-    let doAllAddressesOwnTheirIdByDefault =
-      contract.try_doAllAddressesOwnTheirIdByDefault();
+    let doAllAddressesOwnTheirIdByDefault = contract.try_doAllAddressesOwnTheirIdByDefault();
     if (!doAllAddressesOwnTheirIdByDefault.reverted) {
-      tokenContract.doAllAddressesOwnTheirIdByDefault =
-        doAllAddressesOwnTheirIdByDefault.value; // only set it at creation
+      tokenContract.doAllAddressesOwnTheirIdByDefault = doAllAddressesOwnTheirIdByDefault.value; // only set it at creation
     } else {
       tokenContract.doAllAddressesOwnTheirIdByDefault = false;
     }
@@ -124,17 +90,12 @@ export function handleTransfer(event: Transfer): void {
     if (from != zeroAddress) {
       // existing token
       let currentOwnerPerTokenContractId = contractId + "_" + from;
-      let currentOwnerPerTokenContract = OwnerPerTokenContract.load(
-        currentOwnerPerTokenContractId
-      );
+      let currentOwnerPerTokenContract = OwnerPerTokenContract.load(currentOwnerPerTokenContractId);
       if (currentOwnerPerTokenContract != null) {
         if (currentOwnerPerTokenContract.numTokens.equals(BigInt.fromI32(1))) {
-          tokenContract.numOwners = tokenContract.numOwners.minus(
-            BigInt.fromI32(1)
-          );
+          tokenContract.numOwners = tokenContract.numOwners.minus(BigInt.fromI32(1));
         }
-        currentOwnerPerTokenContract.numTokens =
-          currentOwnerPerTokenContract.numTokens.minus(BigInt.fromI32(1));
+        currentOwnerPerTokenContract.numTokens = currentOwnerPerTokenContract.numTokens.minus(BigInt.fromI32(1));
         currentOwnerPerTokenContract.save();
       }
 
@@ -143,9 +104,7 @@ export function handleTransfer(event: Transfer): void {
         if (currentOwner.numTokens.equals(BigInt.fromI32(1))) {
           all.numOwners = all.numOwners.minus(BigInt.fromI32(1));
         }
-        currentOwner.numTokens = currentOwner.numTokens.minus(
-          BigInt.fromI32(1)
-        );
+        currentOwner.numTokens = currentOwner.numTokens.minus(BigInt.fromI32(1));
         currentOwner.save();
       }
     } // else minting
@@ -177,9 +136,7 @@ export function handleTransfer(event: Transfer): void {
           if (!metadataURI.reverted) {
             eip721Token.tokenURI = normalize(metadataURI.value);
 
-            let cid = eip721Token.tokenURI.substring(
-              eip721Token.tokenURI.lastIndexOf("/") + 1
-            );
+            let cid = eip721Token.tokenURI.substring(eip721Token.tokenURI.lastIndexOf("/") + 1);
             if (cid) {
               let jsonIpfs = ipfs.cat(cid);
               if (jsonIpfs) {
@@ -201,13 +158,9 @@ export function handleTransfer(event: Transfer): void {
                         eip721Token.image = image ? image.toString() : "";
                       }
                       const description = jsonObject.get("description");
-                      const kindDescription = description
-                        ? description.kind
-                        : JSONValueKind.NULL;
+                      const kindDescription = description ? description.kind : JSONValueKind.NULL;
                       if (kindDescription == JSONValueKind.STRING) {
-                        eip721Token.description = description
-                          ? description.toString()
-                          : "";
+                        eip721Token.description = description ? description.toString() : "";
                       }
                     }
                   }
@@ -230,25 +183,18 @@ export function handleTransfer(event: Transfer): void {
       newOwner.save();
 
       let newOwnerPerTokenContractId = contractId + "_" + to;
-      let newOwnerPerTokenContract = OwnerPerTokenContract.load(
-        newOwnerPerTokenContractId
-      );
+      let newOwnerPerTokenContract = OwnerPerTokenContract.load(newOwnerPerTokenContractId);
       if (newOwnerPerTokenContract == null) {
-        newOwnerPerTokenContract = new OwnerPerTokenContract(
-          newOwnerPerTokenContractId
-        );
+        newOwnerPerTokenContract = new OwnerPerTokenContract(newOwnerPerTokenContractId);
         newOwnerPerTokenContract.owner = newOwner.id;
         newOwnerPerTokenContract.contract = tokenContract.id;
         newOwnerPerTokenContract.numTokens = BigInt.fromI32(0);
       }
 
       if (newOwnerPerTokenContract.numTokens.equals(BigInt.fromI32(0))) {
-        tokenContract.numOwners = tokenContract.numOwners.plus(
-          BigInt.fromI32(1)
-        );
+        tokenContract.numOwners = tokenContract.numOwners.plus(BigInt.fromI32(1));
       }
-      newOwnerPerTokenContract.numTokens =
-        newOwnerPerTokenContract.numTokens.plus(BigInt.fromI32(1));
+      newOwnerPerTokenContract.numTokens = newOwnerPerTokenContract.numTokens.plus(BigInt.fromI32(1));
       newOwnerPerTokenContract.save();
 
       tokenContract.numTokens = tokenContract.numTokens.plus(BigInt.fromI32(1));
@@ -256,9 +202,7 @@ export function handleTransfer(event: Transfer): void {
       // burn
       store.remove("Token", id);
       all.numTokens = all.numTokens.minus(BigInt.fromI32(1));
-      tokenContract.numTokens = tokenContract.numTokens.minus(
-        BigInt.fromI32(1)
-      );
+      tokenContract.numTokens = tokenContract.numTokens.minus(BigInt.fromI32(1));
     }
   }
   tokenContract.save();

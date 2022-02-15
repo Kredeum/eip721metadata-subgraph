@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "target": "es2020",
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "files": ["add-file.ts", "handlebars.ts"]
+  "include": ["tests", "scripts"],
+  "files": ["scripts/handlebars.ts"]
 }

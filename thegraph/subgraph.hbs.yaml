@@ -4,12 +4,13 @@ description: EIP721metadata, NFTs with metadata
 repository: https://github.com/Kredeum/eip721metadata-subgraph
 schema:
   file: ./schema.graphql
+features:
+  - ipfsOnEthereumContracts
 dataSources:
   - kind: ethereum/contract
     name: EIP721metadata
     network: {{chainName}}
     source:
-      address: '0xa856cEF16D29B7B69098008B277C3933A4d1078f'
       abi: EIP721
       startBlock: {{startBlock}}
     mapping:
