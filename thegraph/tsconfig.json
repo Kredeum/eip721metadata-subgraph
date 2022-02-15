@@ -1,4 +1,7 @@
 {
-  "extends": "assemblyscript/std/assembly.json",
-  "include": ["**/*.ts"]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node"
+  },
+  "files": ["add-file.ts", "handlebars.ts"]
 }

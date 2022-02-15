@@ -7,11 +7,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: EIP721metadata
-    network: rinkeby
+    network: {{chainName}}
     source:
       address: '0xa856cEF16D29B7B69098008B277C3933A4d1078f'
       abi: EIP721
-      startBlock: 10050000
+      startBlock: {{startBlock}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

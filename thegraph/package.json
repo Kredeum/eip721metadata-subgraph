@@ -2,15 +2,18 @@
   "scripts": {
     "test": "source .env && echo $THEGRAPH_KEY",
     "clean": "rm -rf build generated",
+    "generate": "ts-node handlebars.ts",
     "codegen": "graph codegen",
     "check": "prettier --no-error-on-unmatched-pattern **/*ts **/*.yaml **/*.graphql --write",
-    "build": "npm run clean && npm run codegen && graph build && npm run check",
+    "build": "npm run clean && npm run generate && npm run codegen && graph build && npm run check",
     "tests": "mocha --experimental-json-modules tests/*.mjs",
     "deploy": "source .env && npm run clean && npm run codegen && graph deploy zapaz/eip721-rinkeby --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token $THEGRAPH_KEY"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "0.26.0",
     "@graphprotocol/graph-ts": "0.24.1",
-    "assemblyscript": "^0.19.23"
+    "@types/node": "^17.0.18",
+    "assemblyscript": "^0.19.23",
+    "handlebars": "^4.7.7"
   }
 }
