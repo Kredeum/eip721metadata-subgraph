@@ -23,9 +23,10 @@ describe("Subgraph Queries", async function () {
   it("Should get one NFT", async function () {
     this.timeout(50000);
 
-    nfts = await _graphQL(
-      endpoint,
-      `{
+    nfts = (
+      await _graphQL(
+        endpoint,
+        `{
       tokens(first: 1, where: { metadata_not: "" }) {        id
         tokenURI
         name
@@ -34,7 +35,8 @@ describe("Subgraph Queries", async function () {
         metadata
       }
     }`
-    );
+      )
+    ).data;
     console.log(nfts);
     expect(nfts?.tokens?.length).to.be.equal(1);
   });

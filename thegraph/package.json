@@ -6,7 +6,7 @@
     "codegen": "graph codegen",
     "check": "prettier --no-error-on-unmatched-pattern **/*ts **/*.yaml **/*.graphql --write",
     "build": "npm run clean && npm run generate && npm run codegen && graph build && npm run check",
-    "tests": "mocha --experimental-json-modules tests/*.mjs",
+    "tests": "ts-mocha tests/*.ts",
     "deploy": "source .env && npm run clean && npm run codegen && graph deploy zapaz/eip721-rinkeby --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token $THEGRAPH_KEY"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "chai": "^4.3.6",
     "handlebars": "^4.7.7",
     "mocha": "^9.2.0",
-    "node-fetch": "^3.2.0",
+    "node-fetch": "^2.6.7",
     "ts-mocha": "^9.0.2",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
